@@ -1,0 +1,19 @@
+name: HubTools
+author: iTrooz_
+description: Utilités pour le Hub
+version: 1.2.0
+main: fr.entasia.hubtools.Main
+depend: [Libraries]
+softdepend: [Multiverse-Core]
+commands:
+  buildtoggle:
+  menu:
+    aliases: [entasia]
+  hubtools:
+    aliases: [hubtool]
+  spawn:
+    aliases: [hub, lob, lobby]
+
+  creatif:
+  entagames:
+  skyblock:
