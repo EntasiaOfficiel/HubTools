@@ -85,7 +85,7 @@ public class InvsManager {
 		item.setItemMeta(sm);
 		inv.setItem(27, item);
 
-		item = new ItemStack(Material.COMMAND);
+		item = new ItemStack(Material.REDSTONE_COMPARATOR);
 		meta = item.getItemMeta();
 		meta.setDisplayName("§8Paramètrages");
 		meta.setLore(Collections.singletonList("§9Non disponible pour le moment !"));
