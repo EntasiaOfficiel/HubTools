@@ -18,6 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -38,6 +39,13 @@ public class Main extends JavaPlugin {
 			main = this;
 			vaultChat = getServer().getServicesManager().getRegistration(Chat.class).getProvider();
 			world = Bukkit.getWorlds().get(0);
+
+			File[] files  = new File(world.getName()+"/playerdata").listFiles();
+			if(files!=null){
+				for(File lf : files){
+					lf.delete();
+				}
+			}
 
 			saveDefaultConfig();
 			loadConfig();

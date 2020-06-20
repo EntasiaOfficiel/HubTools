@@ -47,14 +47,16 @@ public class ProtectionListeners implements Listener {
 			Vector v = e.getEntity().getVelocity();
 			v.add(e.getDamager().getLocation().getDirection().setY(0).divide(new Vector(5, 5, 5)));
 
-			if(v.getX()>4)v.setX(4);
-			else if(v.getX()<-4)v.setX(-4);
+			if(v.getX()>MAX)v.setX(MAX);
+			else if(v.getX()<-MAX)v.setX(-MAX);
 
-			if(v.getZ()>4)v.setZ(4);
-			else if(v.getZ()<-4)v.setZ(-4);
+			if(v.getZ()>MAX)v.setZ(MAX);
+			else if(v.getZ()<-MAX)v.setZ(-MAX);
 			e.getEntity().setVelocity(v);
 		}
 	}
+
+	private static final int MAX = 2;
 
 	@EventHandler
 	public static void hunger(FoodLevelChangeEvent e){
