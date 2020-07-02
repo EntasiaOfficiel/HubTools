@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 
 import static fr.entasia.hubtools.Main.buildToggle;
 
-public class ProtectionListeners implements Listener {
+public class Protection implements Listener {
 
 	@EventHandler
 	public static void onPlace(BlockPlaceEvent e) {
@@ -64,7 +64,7 @@ public class ProtectionListeners implements Listener {
 	}
 
 	@EventHandler
-	public static void hunger(ExplosionPrimeEvent e){
+	public static void explosion(ExplosionPrimeEvent e){
 		e.setCancelled(true);
 	}
 }

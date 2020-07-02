@@ -4,7 +4,7 @@ description: Utilités pour le Hub
 version: 1.2.0
 main: fr.entasia.hubtools.Main
 depend: [Libraries]
-softdepend: [Multiverse-Core]
+softdepend: [Multiverse-Core, Vault]
 commands:
   buildtoggle:
   menu:

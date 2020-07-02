@@ -4,8 +4,8 @@ import fr.entasia.apis.menus.MenuAPI;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.socket.SocketEvent;
 import fr.entasia.hubtools.commands.*;
-import fr.entasia.hubtools.listeners.BasicListeners;
-import fr.entasia.hubtools.listeners.ProtectionListeners;
+import fr.entasia.hubtools.listeners.Other;
+import fr.entasia.hubtools.listeners.Protection;
 import fr.entasia.hubtools.utils.EntasiaServer;
 import fr.entasia.hubtools.utils.HubPlayer;
 import fr.entasia.hubtools.utils.InvsManager;
@@ -37,8 +37,10 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		try{
 			main = this;
-			vaultChat = getServer().getServicesManager().getRegistration(Chat.class).getProvider();
 			world = Bukkit.getWorlds().get(0);
+			try{
+				vaultChat = getServer().getServicesManager().getRegistration(Chat.class).getProvider();
+			}catch(NullPointerException | NoClassDefFoundError ignore){}
 
 			File[] files  = new File(world.getName()+"/playerdata").listFiles();
 			if(files!=null){
@@ -59,8 +61,8 @@ public class Main extends JavaPlugin {
 				}
 			}.runTaskTimer(this, 0, 26*60*3);
 
-			getServer().getPluginManager().registerEvents(new BasicListeners(), this);
-			getServer().getPluginManager().registerEvents(new ProtectionListeners(), this);
+			getServer().getPluginManager().registerEvents(new Other(), this);
+			getServer().getPluginManager().registerEvents(new Protection(), this);
 
 			getCommand("spawn").setExecutor(new Spawn());
 			getCommand("menu").setExecutor(new Menu());
@@ -75,7 +77,6 @@ public class Main extends JavaPlugin {
 				@Override
 				public void onEvent(String[] data) {
 					try{
-						System.out.println("updating "+data[0]+" with "+data[1]);
 						EntasiaServer s = EntasiaServer.valueOf(data[0]);
 						s.onlines = Integer.parseInt(data[1]);
 						for(MenuAPI.InvInst i : InvsManager.gMenu.instances){
@@ -98,7 +99,7 @@ public class Main extends JavaPlugin {
 			});
 
 			Bukkit.getLogger().info("Plugin HubTools activé !");
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 			getLogger().severe("Erreur lors du chargement du plugin ! ARRET DU SERVEUR");
 			getServer().shutdown();
@@ -133,6 +134,11 @@ public class Main extends JavaPlugin {
 		meta.setDisplayName("§7Paramètres");
 		item.setItemMeta(meta);
 		hp.p.getInventory().setItem(7, item);
-		hp.sb.refresh();;
+		hp.sb.refresh();
+	}
+
+	public static String getPrefix(Player p){
+		if(vaultChat==null)return "";
+		else return Main.vaultChat.getPlayerPrefix(p).replace("&", "§");
 	}
 }

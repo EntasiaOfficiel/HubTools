@@ -30,7 +30,7 @@ public class SBManager {
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		objective.getScore("§b§m-----------").setScore(50);
 		objective.getScore("§7Pseudo : §b"+hp.p.getDisplayName()).setScore(49);
-		objective.getScore("§7Grade : §b"+Main.vaultChat.getPlayerPrefix(hp.p).replace("&", "§")).setScore(48);
+		objective.getScore("§7Grade : §b"+Main.getPrefix(hp.p)).setScore(48);
 		objective.getScore(" ").setScore(46);
 		refreshOnlines();
 		objective.getScore("§b§m----------- ").setScore(40);
@@ -43,5 +43,4 @@ public class SBManager {
 		else onlines = "§7Connectés : §b"+ Main.onlines;
 		objective.getScore(onlines).setScore(45);
 	}
-
 }

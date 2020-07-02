@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 public class Spawn implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] arg){
-		Main.tpLobby( (Player) sender);
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+		Main.tpLobby((Player) sender);
 		return true;
 	}
 }
