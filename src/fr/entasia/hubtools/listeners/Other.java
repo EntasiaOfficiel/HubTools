@@ -70,7 +70,7 @@ public class Other implements Listener {
 			if(e.getClickedBlock().getType()==Material.GOLD_PLATE){
 
 				e.getPlayer().getInventory().setChestplate(new ItemStack(Material.ELYTRA));
-				e.getPlayer().getInventory().setItem(2, new ItemStack(Material.FIREWORK, 10));
+				e.getPlayer().getInventory().setItem(2, new ItemStack(Material.FIREWORK, 8));
 				e.getPlayer().setMetadata("gliding", new FixedMetadataValue(Main.main, true));
 				new BukkitRunnable() {
 					public void run() {
@@ -95,32 +95,34 @@ public class Other implements Listener {
 						InvsManager.gMenuOpen(e.getPlayer());
 					}
 				}else if(e.getPlayer().getInventory().getItemInMainHand().getType()==Material.FIREWORK){
-					e.setCancelled(true);
-					List<MetadataValue> list = e.getPlayer().getMetadata("gliding");
-					if(list.size()==0)e.getPlayer().getInventory().setItemInMainHand(null);
-					else if(e.getPlayer().isGliding()){
-						int a = e.getItem().getAmount();
-						if(a==1)e.getPlayer().getInventory().setItemInMainHand(null);
-						else e.getItem().setAmount(a-1);
-						Vector v = e.getPlayer().getVelocity();
-						v.add(e.getPlayer().getLocation().getDirection().multiply(2));
-						VectorUtils.limitVector(v, 1.5);
-						e.getPlayer().setVelocity(v);
-						new BukkitRunnable() {
-							Iterator<Integer> ite = OtherUtils.notes.iterator();
-							int i=0;
-							@Override
-							public void run() {
-								if(e.getPlayer().isGliding()){
-									if(ite.hasNext()){
-										Location loc = e.getPlayer().getLocation();
-										loc.getWorld().spawnParticle(Particle.NOTE, loc, 0, ite.next()/24f, 0, 0);
-										i++;
-										loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_HARP, 10, i/(float)OtherUtils.notes.size()*2);
-									}
-								}else cancel();
-							}
-						}.runTaskTimer(Main.main, 0, 2);
+					if(e.getAction()==Action.RIGHT_CLICK_AIR){
+						e.setCancelled(true);
+						List<MetadataValue> list = e.getPlayer().getMetadata("gliding");
+						if(list.size()==0)e.getPlayer().getInventory().setItemInMainHand(null);
+						else if(e.getPlayer().isGliding()){
+							int a = e.getItem().getAmount();
+							if(a==1)e.getPlayer().getInventory().setItemInMainHand(null);
+							else e.getItem().setAmount(a-1);
+							Vector v = e.getPlayer().getVelocity();
+							v.add(e.getPlayer().getLocation().getDirection().multiply(2));
+							VectorUtils.limitVector(v, 2);
+							e.getPlayer().setVelocity(v);
+							new BukkitRunnable() {
+								Iterator<Integer> ite = OtherUtils.notes.iterator();
+								int i=0;
+								@Override
+								public void run() {
+									if(e.getPlayer().isGliding()){
+										if(ite.hasNext()){
+											Location loc = e.getPlayer().getLocation();
+											loc.getWorld().spawnParticle(Particle.NOTE, loc, 0, ite.next()/24f, 0, 0);
+											i++;
+											loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_HARP, 1, i/(float)OtherUtils.notes.size()*2);
+										}
+									}else cancel();
+								}
+							}.runTaskTimer(Main.main, 0, 2);
+						}
 					}
 				}
 			}
