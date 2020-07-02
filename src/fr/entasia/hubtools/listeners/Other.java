@@ -105,7 +105,7 @@ public class Other implements Listener {
 							else e.getItem().setAmount(a-1);
 							Vector v = e.getPlayer().getVelocity();
 							v.add(e.getPlayer().getLocation().getDirection().multiply(2));
-							VectorUtils.limitVector(v, 2);
+							VectorUtils.limitVector(v, 1.6);
 							e.getPlayer().setVelocity(v);
 							new BukkitRunnable() {
 								Iterator<Integer> ite = OtherUtils.notes.iterator();
