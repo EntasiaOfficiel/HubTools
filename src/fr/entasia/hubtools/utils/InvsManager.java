@@ -31,7 +31,7 @@ public class InvsManager {
 					break;
 				case SAPLING:
 					if(e.player.hasPermission("staff.sbaccess"))
-						SocketClient.sendData("BungeeCord send "+e.player.getName()+" sb_test");
+						SocketClient.sendData("BungeeCord send "+e.player.getName()+" skyblock");
 					else
 						e.player.sendMessage("§cLa béta est actuellement réservée aux staffs !");
 					break;
