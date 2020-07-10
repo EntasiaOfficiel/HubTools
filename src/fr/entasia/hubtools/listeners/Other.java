@@ -95,8 +95,8 @@ public class Other implements Listener {
 						InvsManager.gMenuOpen(e.getPlayer());
 					}
 				}else if(e.getPlayer().getInventory().getItemInMainHand().getType()==Material.FIREWORK){
+					e.setCancelled(true);
 					if(e.getAction()==Action.RIGHT_CLICK_AIR){
-						e.setCancelled(true);
 						List<MetadataValue> list = e.getPlayer().getMetadata("gliding");
 						if(list.size()==0)e.getPlayer().getInventory().setItemInMainHand(null);
 						else if(e.getPlayer().isGliding()){
