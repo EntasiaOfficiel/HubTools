@@ -10,9 +10,7 @@ import java.util.List;
 
 public enum EntasiaServer {
 	EntaGames("§c", 32, new ItemStack(Material.TNT), "§cServeur regroupant tout les", "§cmini-jeux d'Entasia !"),
-	Skyblock("§a", 12, new ItemStack(Material.SAPLING),
-			"§cLe serveur n'est pas disponible au public !",
-	"§6Beta 1.5 - §cStaff seulement"),
+	Skyblock("§a", 12, new ItemStack(Material.SAPLING), "§aLe serveur Skyblock ! Quoi de plus normal qu'un serveur Skyblock ?"),
 	Creatif("§3", 30, new ItemStack(Material.BRICK),"§3Amusez-vous, construisez !");
 
 	private ItemStack icon;

@@ -30,16 +30,13 @@ public class InvsManager {
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" EntaGames");
 					break;
 				case SAPLING:
-					if(e.player.hasPermission("staff.sbaccess"))
-						SocketClient.sendData("BungeeCord send "+e.player.getName()+" skyblock");
-					else
-						e.player.sendMessage("§cLa béta est actuellement réservée aux staffs !");
+					SocketClient.sendData("BungeeCord send "+e.player.getName()+" skyblock");
 					break;
 				case BRICK:
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" Creatif");
 					break;
 				case COMMAND:
-					int a = e.slot-46;
+					int a = e.slot-46; // gaffe à ca
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" dev"+a);
 					e.player.sendMessage("§7Tu as téléporté au serveur de dev "+a+" !");
 					break;
