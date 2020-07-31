@@ -1,8 +1,8 @@
 package fr.entasia.hubtools.utils;
 
-import fr.entasia.apis.other.ChatComponent;
 import fr.entasia.apis.menus.MenuClickEvent;
 import fr.entasia.apis.menus.MenuCreator;
+import fr.entasia.apis.other.ChatComponent;
 import fr.entasia.apis.socket.SocketClient;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;

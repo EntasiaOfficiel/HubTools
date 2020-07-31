@@ -3,7 +3,6 @@ package fr.entasia.hubtools.listeners;
 import fr.entasia.apis.utils.ItemUtils;
 import fr.entasia.apis.utils.OtherUtils;
 import fr.entasia.apis.utils.VectorUtils;
-import fr.entasia.cosmetiques.utils.CosmAPI;
 import fr.entasia.hubtools.Main;
 import fr.entasia.hubtools.utils.HubPlayer;
 import fr.entasia.hubtools.utils.InvsManager;
