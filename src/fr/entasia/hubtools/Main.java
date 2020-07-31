@@ -131,7 +131,7 @@ public class Main extends JavaPlugin {
 
 		item = new ItemStack(Material.COMMAND);
 		meta = item.getItemMeta();
-		meta.setDisplayName("§7Paramètres");
+		meta.setDisplayName("§7Cosmétiques");
 		item.setItemMeta(meta);
 		hp.p.getInventory().setItem(7, item);
 		hp.sb.refresh();
