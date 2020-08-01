@@ -96,10 +96,7 @@ public class Other implements Listener {
 						InvsManager.gMenuOpen(e.getPlayer());
 					}
 				}else if(e.getItem().getType()==Material.COMMAND){
-					if(e.getItem().hasItemMeta() && e.getItem().getItemMeta().getDisplayName()!=null & e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Cosmétiques")){
-						CosmAPI.openCosmMenu(e.getPlayer());
-					}
-
+					CosmAPI.openCosmMenu(e.getPlayer());
 				}else if(e.getPlayer().getInventory().getItemInMainHand().getType()==Material.FIREWORK){
 					e.setCancelled(true);
 					if(e.getAction()==Action.RIGHT_CLICK_AIR){
