@@ -3,6 +3,7 @@ package fr.entasia.hubtools.listeners;
 import fr.entasia.apis.utils.ItemUtils;
 import fr.entasia.apis.utils.OtherUtils;
 import fr.entasia.apis.utils.VectorUtils;
+import fr.entasia.cosmetiques.utils.CosmAPI;
 import fr.entasia.hubtools.Main;
 import fr.entasia.hubtools.utils.HubPlayer;
 import fr.entasia.hubtools.utils.InvsManager;
@@ -96,7 +97,7 @@ public class Other implements Listener {
 					}
 				}else if(e.getItem().getType()==Material.COMMAND){
 					if(e.getItem().hasItemMeta() && e.getItem().getItemMeta().getDisplayName()!=null & e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase("§7Cosmétiques")){
-						fr.entasia.cosmetiques.utils.InvsManager.cosmMenuOpen(e.getPlayer());
+						CosmAPI.openCosmMenu(e.getPlayer());
 					}
 
 				}else if(e.getPlayer().getInventory().getItemInMainHand().getType()==Material.FIREWORK){
