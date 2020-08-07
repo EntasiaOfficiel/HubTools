@@ -47,7 +47,6 @@ public class BuildToggle implements CommandExecutor {
 					sender.sendMessage("§6BuildToggle : §aActivé");
 				}
 			}
-
 		}else sender.sendMessage("&cTu n'as pas accès à cette commande !");
 		return true;
 	}

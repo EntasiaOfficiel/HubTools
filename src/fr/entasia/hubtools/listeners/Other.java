@@ -17,7 +17,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -38,10 +37,10 @@ import static fr.entasia.hubtools.Main.buildToggle;
 public class Other implements Listener {
 
 
-	@EventHandler
-	public static void onInvClick(InventoryClickEvent e) {
-		if(!buildToggle.contains(e.getWhoClicked().getName()))e.setCancelled(true);
-	}
+//	@EventHandler
+//	public static void onInvClick(InventoryClickEvent e) {
+//		if(!buildToggle.contains(e.getWhoClicked().getName()))e.setCancelled(true);
+//	}
 
 	@EventHandler
 	public static void onJoin(PlayerJoinEvent e) {
