@@ -19,7 +19,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -147,13 +146,4 @@ public class Other implements Listener {
 		e.setCancelled(e.toWeatherState()); // en gros si c'est true c'est la pluie
 
 	}
-	@EventHandler
-	public void a(PlayerKickEvent e) {
-		if(e.getReason().equals("Invalid move player packet received")){
-			e.setCancelled(true);
-			e.getPlayer().teleport(e.getPlayer());
-			e.getPlayer().sendMessage("§cTon moteur magique vient de caler ! Ne t'inquiète pas, on te le répare..");
-		}
-	}
-
 }
