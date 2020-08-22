@@ -36,12 +36,6 @@ import static fr.entasia.hubtools.Main.buildToggle;
 
 public class Other implements Listener {
 
-
-//	@EventHandler
-//	public static void onInvClick(InventoryClickEvent e) {
-//		if(!buildToggle.contains(e.getWhoClicked().getName()))e.setCancelled(true);
-//	}
-
 	@EventHandler
 	public static void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();

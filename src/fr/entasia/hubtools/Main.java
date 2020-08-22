@@ -6,6 +6,7 @@ import fr.entasia.apis.socket.SocketEvent;
 import fr.entasia.hubtools.commands.*;
 import fr.entasia.hubtools.listeners.Other;
 import fr.entasia.hubtools.listeners.Protection;
+import fr.entasia.hubtools.listeners.Zones;
 import fr.entasia.hubtools.utils.EntasiaServer;
 import fr.entasia.hubtools.utils.HubPlayer;
 import fr.entasia.hubtools.utils.InvsManager;
@@ -35,6 +36,7 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+
 		try{
 			main = this;
 			world = Bukkit.getWorlds().get(0);
@@ -63,6 +65,7 @@ public class Main extends JavaPlugin {
 
 			getServer().getPluginManager().registerEvents(new Other(), this);
 			getServer().getPluginManager().registerEvents(new Protection(), this);
+			getServer().getPluginManager().registerEvents(new Zones(), this);
 
 			getCommand("spawn").setExecutor(new Spawn());
 			getCommand("menu").setExecutor(new Menu());
