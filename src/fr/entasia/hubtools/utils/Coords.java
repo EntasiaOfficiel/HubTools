@@ -20,7 +20,10 @@ public enum Coords {
 	CHEST1(-185, 53, 1143),
 	CHEST2(40, 124, -51),
 	CHEST3(-245, 85, 1204),
+	LIGHT1(-50, 128, 35),
+	LIGHT2(468, 30, 1152),
 	;
+
 
 
 	public Location loc;

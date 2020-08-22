@@ -48,6 +48,10 @@ public class Zones implements Listener {
 				Coords.CHEST1.teleport(e.getPlayer());
 			}else if(e.getClickedBlock().getLocation().equals(Coords.CHEST3.loc)){
 				Coords.CHEST2.teleport(e.getPlayer());
+			}else if(e.getClickedBlock().getLocation().equals(Coords.LIGHT1.loc)){
+				Coords.LIGHT2.teleport(e.getPlayer());
+			}else if(e.getClickedBlock().getLocation().equals(Coords.LIGHT2.loc)){
+				Coords.LIGHT1.teleport(e.getPlayer());
 			}
 		}
 	}
