@@ -17,7 +17,7 @@ public enum Regions {
 	CHESTOUT("chestout", new BasicLocation(-245, 84, 1204), new BasicLocation(-245, 87, 1204)),
 	CHESTOUT2("chestout2", new BasicLocation(-249, 96, 1207), new BasicLocation(-233, 96, 1194)),
 	GROTTE_OUT("grotte_out", new BasicLocation(-663, 19, 1164), new BasicLocation(-654, 20, 1155)),
-	GROTTE_IN("grotte_in", new BasicLocation(24, 119, 117), new BasicLocation(22, 120, 115)),
+	GROTTE_IN("grotte_in", new BasicLocation(25, 124, 114), new BasicLocation(21, 120, 118)),
 	;
 
 	public Region region;
