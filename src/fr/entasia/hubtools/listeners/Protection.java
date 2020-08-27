@@ -1,5 +1,6 @@
 package fr.entasia.hubtools.listeners;
 
+import fr.entasia.apis.utils.VectorUtils;
 import fr.entasia.hubtools.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,7 +11,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.util.Vector;
 
 import static fr.entasia.hubtools.Main.buildToggle;
@@ -46,17 +49,10 @@ public class Protection implements Listener {
 		if(e.getDamager() instanceof Player){
 			Vector v = e.getEntity().getVelocity();
 			v.add(e.getDamager().getLocation().getDirection().setY(0).divide(new Vector(5, 5, 5)));
-
-			if(v.getX()>MAX)v.setX(MAX);
-			else if(v.getX()<-MAX)v.setX(-MAX);
-
-			if(v.getZ()>MAX)v.setZ(MAX);
-			else if(v.getZ()<-MAX)v.setZ(-MAX);
+			VectorUtils.limitVector(v, 2);
 			e.getEntity().setVelocity(v);
 		}
 	}
-
-	private static final int MAX = 2;
 
 	@EventHandler
 	public static void hunger(FoodLevelChangeEvent e){
@@ -66,5 +62,15 @@ public class Protection implements Listener {
 	@EventHandler
 	public static void explosion(ExplosionPrimeEvent e){
 		e.setCancelled(true);
+	}
+
+	@EventHandler
+	public static void a(InventoryClickEvent e){
+		if(!buildToggle.contains(e.getWhoClicked().getName()))e.setCancelled(true);
+	}
+
+	@EventHandler
+	public static void a(PlayerSwapHandItemsEvent e){
+		if(!buildToggle.contains(e.getPlayer().getName()))e.setCancelled(true);
 	}
 }

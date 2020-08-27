@@ -1,46 +1,43 @@
 package fr.entasia.hubtools.utils;
 
-import fr.entasia.apis.regionManager.api.Region;
-import fr.entasia.apis.regionManager.api.RegionManager;
 import fr.entasia.hubtools.Main;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public enum Coords {
-	CAVE_GO(5, 5, 5,  "cave_go"),
+	TPPLANET(2, 115, -0),
+	TPTROU(2, 200, -0),
+	TROUTROU(-657, 25, 1160),
+	PORTAL(-956, 57, 1202),
+	WATER3(396, 48, 1136),
+	WATER4(131, 145, -32),
+	DRAGON(468, 31, 1152),
+	DRAGONBALCON(38, 155, 40),
 	DOOR1(60, 132, 22),
 	DOOR2(-159, 138, 3),
-	GOLD1(-147, 113, 17),
-	GOLD2(395, 48, 1136),
-	JAIL_GO(397, 48, 1137),
 	DOORS1(-402, 74, 1167),
 	DOORS2(4, 99, -1),
-	BLOCK1(29, 127,37),
-	BLOCK2(977, 20, 1076),
+	BLOCK(41, 120, -40),
+	BLOCK1(977, 20, 1076),
 	CHEST1(-185, 53, 1143),
 	CHEST2(40, 124, -51),
-	CHEST3(-245, 85, 1204),
-	LIGHT1(-50, 128, 35),
-	LIGHT2(468, 30, 1152),
 	;
 
 
 
 	public Location loc;
-	public Region trigger;
-	
+
 	Coords(int x, int y, int z){
-		this(x, y, z, null);
-	}
-	
-	Coords(int x, int y, int z, String reg) {
 		loc = new Location(Main.world, x, y, z);
-		trigger = RegionManager.getRegionByName(reg);
 	}
 
 	public void teleport(Player p){
+		teleport(p, 0);
+	}
+
+	public void teleport(Player p, float yaw){
 		Location t = loc.clone().add(0.5, 0.5, 0.5);
-		t.setYaw(p.getLocation().getYaw());
+		t.setYaw(p.getLocation().getYaw()+yaw);
 		t.setPitch(p.getLocation().getPitch());
 		p.teleport(t);
 	}

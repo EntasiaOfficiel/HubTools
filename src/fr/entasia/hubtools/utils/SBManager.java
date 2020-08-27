@@ -1,5 +1,6 @@
 package fr.entasia.hubtools.utils;
 
+import fr.entasia.apis.utils.LPUtils;
 import fr.entasia.hubtools.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -30,7 +31,7 @@ public class SBManager {
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		objective.getScore("§b§m-----------").setScore(50);
 		objective.getScore("§7Pseudo : §b"+hp.p.getDisplayName()).setScore(49);
-		objective.getScore("§7Grade : §b"+Main.getPrefix(hp.p)).setScore(48);
+		objective.getScore("§7Grade : §b"+ LPUtils.getPrefixSafe(hp.p).key).setScore(48);
 		objective.getScore(" ").setScore(46);
 		refreshOnlines();
 		objective.getScore("§b§m----------- ").setScore(40);

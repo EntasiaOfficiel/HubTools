@@ -2,7 +2,6 @@ package fr.entasia.hubtools.listeners;
 
 import fr.entasia.apis.utils.ItemUtils;
 import fr.entasia.apis.utils.OtherUtils;
-import fr.entasia.apis.utils.VectorUtils;
 import fr.entasia.cosmetiques.utils.CosmAPI;
 import fr.entasia.hubtools.Main;
 import fr.entasia.hubtools.utils.HubPlayer;
@@ -23,13 +22,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.Iterator;
-import java.util.List;
 
 import static fr.entasia.hubtools.Main.buildToggle;
 
@@ -60,12 +56,11 @@ public class Other implements Listener {
 
 	@EventHandler
 	public static void onInteract(PlayerInteractEvent e) {
+		Player p;
 		if(e.getAction()==Action.PHYSICAL){
 			if(e.getClickedBlock().getType()==Material.GOLD_PLATE){
 
 				e.getPlayer().getInventory().setChestplate(new ItemStack(Material.ELYTRA));
-				e.getPlayer().getInventory().setItem(2, new ItemStack(Material.FIREWORK, 8));
-				e.getPlayer().setMetadata("gliding", new FixedMetadataValue(Main.main, true));
 				new BukkitRunnable() {
 					public void run() {
 						e.getPlayer().setVelocity(new Vector(0, 0.9, 0));
@@ -75,6 +70,7 @@ public class Other implements Listener {
 					public void run() {
 						if(e.getPlayer().isFlying())return;
 						e.getPlayer().setGliding(true);
+						e.getPlayer().getInventory().setItem(2, new ItemStack(Material.FIREWORK, 8));
 						Vector v = e.getPlayer().getLocation().getDirection().setY(0);
 						v.normalize();
 						e.getPlayer().setVelocity(v);
@@ -91,18 +87,8 @@ public class Other implements Listener {
 				}else if(e.getItem().getType()==Material.COMMAND){
 					CosmAPI.openCosmMenu(e.getPlayer());
 				}else if(e.getPlayer().getInventory().getItemInMainHand().getType()==Material.FIREWORK){
-					e.setCancelled(true);
 					if(e.getAction()==Action.RIGHT_CLICK_AIR){
-						List<MetadataValue> list = e.getPlayer().getMetadata("gliding");
-						if(list.size()==0)e.getPlayer().getInventory().setItemInMainHand(null);
-						else if(e.getPlayer().isGliding()){
-							int a = e.getItem().getAmount();
-							if(a==1)e.getPlayer().getInventory().setItemInMainHand(null);
-							else e.getItem().setAmount(a-1);
-							Vector v = e.getPlayer().getVelocity();
-							v.add(e.getPlayer().getLocation().getDirection().multiply(2));
-							VectorUtils.limitVector(v, 1.6);
-							e.getPlayer().setVelocity(v);
+						if(e.getPlayer().isGliding()){
 							new BukkitRunnable() {
 								Iterator<Integer> ite = OtherUtils.notes.iterator();
 								int i=0;
@@ -118,6 +104,9 @@ public class Other implements Listener {
 									}else cancel();
 								}
 							}.runTaskTimer(Main.main, 0, 2);
+						}else{
+							e.setCancelled(true);
+							e.getPlayer().getInventory().setItemInMainHand(null);
 						}
 					}
 				}
@@ -131,7 +120,6 @@ public class Other implements Listener {
 			Player p = (Player)e.getEntity();
 			p.getInventory().setChestplate(null);
 			p.getInventory().setItem(2, null);
-			e.getEntity().removeMetadata("gliding", Main.main);
 		}
 	}
 

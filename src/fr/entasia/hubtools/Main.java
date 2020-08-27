@@ -10,7 +10,7 @@ import fr.entasia.hubtools.listeners.Zones;
 import fr.entasia.hubtools.utils.EntasiaServer;
 import fr.entasia.hubtools.utils.HubPlayer;
 import fr.entasia.hubtools.utils.InvsManager;
-import net.milkbowl.vault.chat.Chat;
+import fr.entasia.hubtools.utils.Regions;
 import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -20,6 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,7 +30,6 @@ public class Main extends JavaPlugin {
 	public static HashMap<String, HubPlayer> playerCache = new HashMap<>();
 	public static Location spawn;
 	public static ArrayList<String> buildToggle = new ArrayList<>();
-	public static Chat vaultChat;
 	public static World world;
 	public static int onlines;
 
@@ -40,9 +40,8 @@ public class Main extends JavaPlugin {
 		try{
 			main = this;
 			world = Bukkit.getWorlds().get(0);
-			try{
-				vaultChat = getServer().getServicesManager().getRegistration(Chat.class).getProvider();
-			}catch(NullPointerException | NoClassDefFoundError ignore){}
+
+			Regions.init();
 
 			File[] files  = new File(world.getName()+"/playerdata").listFiles();
 			if(files!=null){
@@ -101,6 +100,10 @@ public class Main extends JavaPlugin {
 				}
 			});
 
+			delFiles("playerdata");
+			delFiles("stats");
+			delFiles("advancements");
+
 			Bukkit.getLogger().info("Plugin HubTools activé !");
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -109,11 +112,21 @@ public class Main extends JavaPlugin {
 		}
 	}
 
+	public static void delFiles(String dir) throws IOException {
+		File[] files  = new File(Bukkit.getWorlds().get(0).getName()+"/"+dir).listFiles();
+		if(files!=null){
+			for(File lf : files){
+				if(!lf.delete())throw new IOException("File not deleted");
+			}
+		}
+	}
+
+
 
 	private static void loadConfig() {
 		main.reloadConfig();
 		ConfigurationSection b = main.getConfig().getConfigurationSection("spawn");
-		spawn = new Location(Bukkit.getServer().getWorlds().get(0), b.getInt("x")+0.5, b.getInt("y")+0.5, b.getInt("z")+0.5);
+		spawn = new Location(world, b.getInt("x")+0.5, b.getInt("y")+0.5, b.getInt("z")+0.5);
 	}
 
 
@@ -138,10 +151,5 @@ public class Main extends JavaPlugin {
 		item.setItemMeta(meta);
 		hp.p.getInventory().setItem(7, item);
 		hp.sb.refresh();
-	}
-
-	public static String getPrefix(Player p){
-		if(vaultChat==null)return "";
-		else return Main.vaultChat.getPlayerPrefix(p).replace("&", "§");
 	}
 }

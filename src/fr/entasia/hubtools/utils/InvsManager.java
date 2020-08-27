@@ -3,6 +3,7 @@ package fr.entasia.hubtools.utils;
 import fr.entasia.apis.menus.MenuClickEvent;
 import fr.entasia.apis.menus.MenuCreator;
 import fr.entasia.apis.other.ChatComponent;
+import fr.entasia.apis.other.ItemBuilder;
 import fr.entasia.apis.socket.SocketClient;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -14,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class InvsManager {
@@ -59,43 +59,25 @@ public class InvsManager {
 
 		ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE);
 		for(int i : new int[]{2,10,19,28,36,45,8,16,25,34,42,51})inv.setItem(i, item);
-//
-		String[] b = new String[]{"EntaGames", "Skyblock", "Creatif"};
-		ArrayList<String> l;
+
 		ItemMeta meta;
 		for(EntasiaServer s : EntasiaServer.values()){
 			inv.setItem(s.iconloc, s.getIcon());
 		}
 
-		item = new ItemStack(Material.PAPER);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§7Site Web !");
-		meta.setLore(Collections.singletonList("§bhttps://enta§7sia.fr"));
-		item.setItemMeta(meta);
+		item = new ItemBuilder(Material.PAPER).name("§7Site Web !").lore("§bhttps://enta§7sia.fr").build();
 		inv.setItem(18, item);
 
 		item = new ItemStack(Material.SKULL_ITEM,1,(short)3);
 		SkullMeta sm = (SkullMeta) item.getItemMeta();
 		sm.setDisplayName("§dStatistiques !");
-		sm.setOwner(p.getName());
+		sm.setOwningPlayer(p);
 		sm.setLore(Collections.singletonList("§9Non disponible pour le moment !"));
 		item.setItemMeta(sm);
 		inv.setItem(27, item);
 
-		item = new ItemStack(Material.REDSTONE_COMPARATOR);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§8Paramètrages");
-		meta.setLore(Collections.singletonList("§9Non disponible pour le moment !"));
-		item.setItemMeta(meta);
+		item = new ItemBuilder(Material.REDSTONE_COMPARATOR).name("§8Paramètrages").lore("§9Non disponible pour le moment !").build();
 		inv.setItem(53, item);
-
-
-		item = new ItemStack(Material.GOLD_INGOT);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§eBoutique");
-		sm.setLore(Collections.singletonList("§9Non disponible pour le moment !"));
-		item.setItemMeta(meta);
-		inv.setItem(44, item);
 
 		if(p.hasPermission( "entasia.dev")){
 			item = new ItemStack(Material.COMMAND);
