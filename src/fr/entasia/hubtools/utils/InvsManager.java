@@ -5,6 +5,8 @@ import fr.entasia.apis.menus.MenuCreator;
 import fr.entasia.apis.other.ChatComponent;
 import fr.entasia.apis.other.ItemBuilder;
 import fr.entasia.apis.socket.SocketClient;
+import fr.entasia.apis.utils.ItemUtils;
+import fr.entasia.hubtools.Main;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -13,9 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
-
-import java.util.Collections;
 
 public class InvsManager {
 
@@ -68,13 +67,8 @@ public class InvsManager {
 		item = new ItemBuilder(Material.PAPER).name("§7Site Web !").lore("§bhttps://enta§7sia.fr").build();
 		inv.setItem(18, item);
 
-		item = new ItemStack(Material.SKULL_ITEM,1,(short)3);
-		SkullMeta sm = (SkullMeta) item.getItemMeta();
-		sm.setDisplayName("§dStatistiques !");
-		sm.setOwningPlayer(p);
-		sm.setLore(Collections.singletonList("§9Non disponible pour le moment !"));
-		item.setItemMeta(sm);
-		inv.setItem(27, item);
+		item = new ItemBuilder(Material.SKULL_ITEM).damage(3).name("§dStatistiques !").lore("§9Non disponible pour le moment !").build();
+		ItemUtils.placeSkullAsync(inv, 27, item, p, Main.main);
 
 		item = new ItemBuilder(Material.REDSTONE_COMPARATOR).name("§8Paramètrages").lore("§9Non disponible pour le moment !").build();
 		inv.setItem(53, item);
