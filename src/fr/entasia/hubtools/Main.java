@@ -1,6 +1,7 @@
 package fr.entasia.hubtools;
 
 import fr.entasia.apis.menus.MenuAPI;
+import fr.entasia.apis.other.ItemBuilder;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.socket.SocketEvent;
 import fr.entasia.hubtools.commands.*;
@@ -15,7 +16,6 @@ import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -123,7 +123,7 @@ public class Main extends JavaPlugin {
 
 
 
-	private static void loadConfig() {
+	private static void loadConfig() throws Throwable {
 		main.reloadConfig();
 		ConfigurationSection b = main.getConfig().getConfigurationSection("spawn");
 		spawn = new Location(world, b.getInt("x")+0.5, b.getInt("y")+0.5, b.getInt("z")+0.5);
@@ -139,16 +139,10 @@ public class Main extends JavaPlugin {
 		hp.p.getActivePotionEffects().clear();
 		hp.p.setGameMode(GameMode.SURVIVAL);
 
-		ItemStack item = new ItemStack(Material.ENDER_CHEST);
-		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName("§7Menu d'§bEnta§7sia");
-		item.setItemMeta(meta);
+		ItemStack item = new ItemBuilder(Material.ENDER_CHEST).name("§7Menu d'§bEnta§7sia").build();
 		hp.p.getInventory().setItem(4, item);
 
-		item = new ItemStack(Material.COMMAND);
-		meta = item.getItemMeta();
-		meta.setDisplayName("§7Cosmétiques");
-		item.setItemMeta(meta);
+		item = new ItemBuilder(Material.COMMAND_BLOCK).name("§7Cosmétiques").build();
 		hp.p.getInventory().setItem(7, item);
 		hp.sb.refresh();
 	}

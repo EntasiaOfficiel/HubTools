@@ -58,8 +58,7 @@ public class Other implements Listener {
 	public static void onInteract(PlayerInteractEvent e) {
 		Player p;
 		if(e.getAction()==Action.PHYSICAL){
-			if(e.getClickedBlock().getType()==Material.GOLD_PLATE){
-
+			if(e.getClickedBlock().getType()==Material.LIGHT_WEIGHTED_PRESSURE_PLATE){
 				e.getPlayer().getInventory().setChestplate(new ItemStack(Material.ELYTRA));
 				new BukkitRunnable() {
 					public void run() {
@@ -70,7 +69,7 @@ public class Other implements Listener {
 					public void run() {
 						if(e.getPlayer().isFlying())return;
 						e.getPlayer().setGliding(true);
-						e.getPlayer().getInventory().setItem(2, new ItemStack(Material.FIREWORK, 8));
+						e.getPlayer().getInventory().setItem(2, new ItemStack(Material.FIREWORK_ROCKET, 8));
 						Vector v = e.getPlayer().getLocation().getDirection().setY(0);
 						v.normalize();
 						e.getPlayer().setVelocity(v);
@@ -84,9 +83,9 @@ public class Other implements Listener {
 						e.setCancelled(true);
 						InvsManager.gMenuOpen(e.getPlayer());
 					}
-				}else if(e.getItem().getType()==Material.COMMAND){
+				}else if(e.getItem().getType()==Material.COMMAND_BLOCK){
 					CosmAPI.openCosmMenu(e.getPlayer());
-				}else if(e.getPlayer().getInventory().getItemInMainHand().getType()==Material.FIREWORK){
+				}else if(e.getPlayer().getInventory().getItemInMainHand().getType()==Material.FIREWORK_ROCKET){
 					if(e.getAction()==Action.RIGHT_CLICK_AIR){
 						if(e.getPlayer().isGliding()){
 							new BukkitRunnable() {
@@ -99,7 +98,7 @@ public class Other implements Listener {
 											Location loc = e.getPlayer().getLocation();
 											loc.getWorld().spawnParticle(Particle.NOTE, loc, 0, ite.next()/24f, 0, 0);
 											i++;
-											loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_HARP, 1, i/(float)OtherUtils.notes.size()*2);
+											loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_BLOCK_HARP, 1, i/(float)OtherUtils.notes.size()*2);
 										}
 									}else cancel();
 								}

@@ -5,6 +5,7 @@ version: 1.2.0
 main: fr.entasia.hubtools.Main
 depend: [Libraries]
 softdepend: [Multiverse-Core, Vault]
+api-version: '1.15'
 commands:
   buildtoggle:
   menu:

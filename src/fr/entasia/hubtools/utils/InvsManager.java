@@ -14,7 +14,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class InvsManager {
 
@@ -28,13 +27,13 @@ public class InvsManager {
 				case TNT:
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" EntaGames");
 					break;
-				case SAPLING:
+				case OAK_SAPLING:
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" skyblock");
 					break;
 				case BRICK:
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" Creatif");
 					break;
-				case COMMAND:
+				case COMMAND_BLOCK:
 					int a = e.slot-46; // gaffe à ca
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" dev"+a);
 					e.player.sendMessage("§7Tu as téléporté au serveur de dev "+a+" !");
@@ -44,7 +43,7 @@ public class InvsManager {
 					ChatComponent site = new ChatComponent("§bhttps://enta§7sia.fr");
 					site.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§6Clique pour aller sur le site !").create()));
 					site.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://entasia.fr"));
-					e.player.sendMessage(ChatComponent.create(m, site, new ChatComponent(" §6 !")));
+					e.player.spigot().sendMessage(ChatComponent.create(m, site, new ChatComponent(" §6 !")));
 					break;
 				default:
 					e.player.sendMessage("§cCette option n'est pas disponible pour le moment !");
@@ -56,10 +55,9 @@ public class InvsManager {
 	public static void gMenuOpen(Player p){
 		Inventory inv = gMenu.createInv(6, "§7Menu d'§bEnta§7sia");
 
-		ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE);
+		ItemStack item = new ItemStack(Material.WHITE_STAINED_GLASS_PANE);
 		for(int i : new int[]{2,10,19,28,36,45,8,16,25,34,42,51})inv.setItem(i, item);
 
-		ItemMeta meta;
 		for(EntasiaServer s : EntasiaServer.values()){
 			inv.setItem(s.iconloc, s.getIcon());
 		}
@@ -67,24 +65,19 @@ public class InvsManager {
 		item = new ItemBuilder(Material.PAPER).name("§7Site Web !").lore("§bhttps://enta§7sia.fr").build();
 		inv.setItem(18, item);
 
-		item = new ItemBuilder(Material.SKULL_ITEM).damage(3).name("§dStatistiques !").lore("§9Non disponible pour le moment !").build();
+		item = new ItemBuilder(Material.PLAYER_HEAD).damage(3).name("§dStatistiques !").lore("§9Non disponible pour le moment !").build();
 		ItemUtils.placeSkullAsync(inv, 27, item, p, Main.main);
 
-		item = new ItemBuilder(Material.REDSTONE_COMPARATOR).name("§8Paramètrages").lore("§9Non disponible pour le moment !").build();
+		item = new ItemBuilder(Material.COMPARATOR).name("§8Paramètrages").lore("§9Non disponible pour le moment !").build();
 		inv.setItem(53, item);
 
 		if(p.hasPermission( "entasia.dev")){
-			item = new ItemStack(Material.COMMAND);
-			meta = item.getItemMeta();
-			meta.setDisplayName("§8Serveur de développement §11");
-			item.setItemMeta(meta);
-			inv.setItem(47, item);
-			meta.setDisplayName("§8Serveur de développement §12");
-			item.setItemMeta(meta);
-			inv.setItem(48, item);
-			meta.setDisplayName("§8Serveur de développement §13");
-			item.setItemMeta(meta);
-			inv.setItem(49, item);
+			ItemBuilder builder = new ItemBuilder(Material.COMMAND_BLOCK).name("§8Serveur de développement §11");
+			inv.setItem(47, builder.build());
+			builder.name("§8Serveur de développement §12");
+			inv.setItem(48, builder.build());
+			builder.name("§8Serveur de développement §13");
+			inv.setItem(49, builder.build());
 		}
 
 		p.openInventory(inv);
