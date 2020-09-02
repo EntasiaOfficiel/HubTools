@@ -19,7 +19,7 @@ public class InvsManager {
 
 
 
-	public static MenuCreator gMenu = new MenuCreator(null, null) {
+	public static MenuCreator gMenu = new MenuCreator(){
 
 		@Override
 		public void onMenuClick(MenuClickEvent e) {
