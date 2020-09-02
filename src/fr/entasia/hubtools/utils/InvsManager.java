@@ -30,7 +30,7 @@ public class InvsManager {
 				case OAK_SAPLING:
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" skyblock");
 					break;
-				case BRICK:
+				case BRICKS:
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" Creatif");
 					break;
 				case COMMAND_BLOCK:
