@@ -2,7 +2,7 @@ package fr.entasia.hubtools.listeners;
 
 import fr.entasia.apis.utils.ItemUtils;
 import fr.entasia.apis.utils.OtherUtils;
-import fr.entasia.cosmetiques.utils.CosmAPI;
+import fr.entasia.cosmetics.utils.CosmAPI;
 import fr.entasia.hubtools.Main;
 import fr.entasia.hubtools.utils.HubPlayer;
 import fr.entasia.hubtools.utils.InvsManager;
@@ -56,7 +56,6 @@ public class Other implements Listener {
 
 	@EventHandler
 	public static void onInteract(PlayerInteractEvent e) {
-		Player p;
 		if(e.getAction()==Action.PHYSICAL){
 			if(e.getClickedBlock().getType()==Material.LIGHT_WEIGHTED_PRESSURE_PLATE){
 				e.getPlayer().getInventory().setChestplate(new ItemStack(Material.ELYTRA));
