@@ -43,13 +43,6 @@ public class Main extends JavaPlugin {
 
 			Regions.init();
 
-			File[] files  = new File(world.getName()+"/playerdata").listFiles();
-			if(files!=null){
-				for(File lf : files){
-					lf.delete();
-				}
-			}
-
 			saveDefaultConfig();
 			loadConfig();
 
