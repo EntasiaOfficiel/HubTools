@@ -48,6 +48,7 @@ public class InvsManager {
 				default:
 					e.player.sendMessage("§cCette option n'est pas disponible pour le moment !");
 			}
+
 			e.player.closeInventory();
 		}
 	};
