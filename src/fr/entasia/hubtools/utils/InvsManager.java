@@ -6,7 +6,6 @@ import fr.entasia.apis.other.ChatComponent;
 import fr.entasia.apis.other.ItemBuilder;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.utils.ItemUtils;
-import fr.entasia.hubtools.Main;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -66,7 +65,7 @@ public class InvsManager {
 		inv.setItem(18, item);
 
 		item = new ItemBuilder(Material.PLAYER_HEAD).damage(3).name("§dStatistiques !").lore("§9Non disponible pour le moment !").build();
-		ItemUtils.placeSkullAsync(inv, 27, item, p, Main.main);
+		ItemUtils.placeSkullAsync(inv, 27, item, p);
 
 		item = new ItemBuilder(Material.COMPARATOR).name("§8Paramètrages").lore("§9Non disponible pour le moment !").build();
 		inv.setItem(53, item);
