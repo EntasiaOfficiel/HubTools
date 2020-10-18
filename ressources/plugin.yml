@@ -1,7 +1,7 @@
 name: HubTools
-author: iTrooz_
+author: iTrooz_, Narcos
 description: Utilités pour le Hub
-version: 1.2.0
+version: -1
 main: fr.entasia.hubtools.Main
 depend: [Libraries]
 softdepend: [Multiverse-Core, Vault]
