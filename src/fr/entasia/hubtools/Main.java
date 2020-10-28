@@ -1,6 +1,6 @@
 package fr.entasia.hubtools;
 
-import fr.entasia.apis.menus.MenuAPI;
+import fr.entasia.apis.menus.InvInst;
 import fr.entasia.apis.other.ItemBuilder;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.socket.SocketEvent;
@@ -74,7 +74,7 @@ public class Main extends JavaPlugin {
 					try{
 						EntasiaServer s = EntasiaServer.valueOf(data[0]);
 						s.onlines = Integer.parseInt(data[1]);
-						for(MenuAPI.InvInst i : InvsManager.gMenu.instances){
+						for(InvInst i : InvsManager.gMenu.instances){
 							i.inv.setItem(s.iconloc, s.getIcon());
 						}
 					} catch(IllegalArgumentException e){
