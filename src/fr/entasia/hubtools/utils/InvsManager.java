@@ -33,9 +33,11 @@ public class InvsManager {
 					SocketClient.sendData("BungeeCord send "+e.player.getName()+" Creatif");
 					break;
 				case COMMAND_BLOCK:
-					int a = e.slot-46; // gaffe à ca
-					SocketClient.sendData("BungeeCord send "+e.player.getName()+" dev"+a);
-					e.player.sendMessage("§7Tu as téléporté au serveur de dev "+a+" !");
+					int a = e.slot-46;
+					if(a>0&&a<4){
+						SocketClient.sendData("BungeeCord send "+e.player.getName()+" dev"+a);
+						e.player.sendMessage("§7Tu as été téléporté au serveur de dev "+a+" !");
+					}
 					break;
 				case PAPER:
 					ChatComponent m = new ChatComponent("§6Notre site Web : ");
