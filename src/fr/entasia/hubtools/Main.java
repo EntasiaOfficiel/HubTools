@@ -50,7 +50,7 @@ public class Main extends JavaPlugin {
 				@Override
 				public void run() {
 					for(HubPlayer hp : playerCache.values()){
-						hp.sb.refresh();
+						hp.sb.reload();
 					}
 				}
 			}.runTaskTimer(this, 0, 26*60*3);
@@ -137,6 +137,6 @@ public class Main extends JavaPlugin {
 
 		item = new ItemBuilder(Material.COMMAND_BLOCK).name("§7Cosmétiques").build();
 		hp.p.getInventory().setItem(7, item);
-		hp.sb.refresh();
+		hp.sb.reload();
 	}
 }

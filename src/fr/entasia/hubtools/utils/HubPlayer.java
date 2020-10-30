@@ -9,5 +9,6 @@ public class HubPlayer {
 
 	public HubPlayer(Player p){
 		this.p = p;
+		this.sb = new SBManager(this);
 	}
 }

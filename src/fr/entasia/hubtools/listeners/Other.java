@@ -41,7 +41,7 @@ public class Other implements Listener {
 			Main.playerCache.put(p.getName(), hp);
 		}else hp.p = p;
 		hp.sb = new SBManager(hp);
-		hp.sb.refresh();
+		hp.sb.reload();
 		Main.tpLobby(e.getPlayer());
 		e.getPlayer().setHealth(20);
 		e.getPlayer().setFoodLevel(20);

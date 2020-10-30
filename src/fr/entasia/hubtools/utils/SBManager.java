@@ -1,47 +1,33 @@
 package fr.entasia.hubtools.utils;
 
+import fr.entasia.apis.other.ScoreBoardHelper;
 import fr.entasia.apis.utils.LPUtils;
 import fr.entasia.hubtools.Main;
-import org.bukkit.Bukkit;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
 
-public class SBManager {
+public class SBManager extends ScoreBoardHelper {
 
 	public HubPlayer hp;
-	public Scoreboard scoreboard;
-	public Objective objective;
-	public String onlines = "";
 
 	public SBManager(HubPlayer hp){
+		super(hp.p, "hub", "§bEnta§7sia");
 		this.hp = hp;
-		scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-		objective = scoreboard.registerNewObjective("hub", "dummy");
 	}
 
-	public void clear(){
-		scoreboard.getEntries().forEach(a -> scoreboard.resetScores(a));
-	}
-
-	public void refresh(){
-		hp.p.setScoreboard(scoreboard);
-		clear();
-		objective.setDisplayName("§bEnta§7sia");
-		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-		objective.getScore("§b§m-----------").setScore(50);
-		objective.getScore("§7Pseudo : §b"+hp.p.getDisplayName()).setScore(49);
-		objective.getScore("§7Grade : §b"+ LPUtils.getPrefixSafe(hp.p).key).setScore(48);
-		objective.getScore(" ").setScore(46);
+	@Override
+	protected void setSlots() {
+		staticLine(8, "§b§m-----------");
+		staticLine(6, "§7Pseudo : §b"+hp.p.getDisplayName());
+		staticLine(4, "§7Grade : §b"+ LPUtils.getPrefixSafe(hp.p).key);
+		staticLine(2, " ");
 		refreshOnlines();
-		objective.getScore("§b§m----------- ").setScore(40);
-		objective.getScore("§bplay.enta§7sia.fr").setScore(10);
+		staticLine(0, "§b§m----------- ");
+
 	}
 
 	public void refreshOnlines(){
-		scoreboard.resetScores(onlines);
+		String onlines;
 		if(Main.onlines==1) onlines = "§7Connecté : §b1";
 		else onlines = "§7Connectés : §b"+ Main.onlines;
-		objective.getScore(onlines).setScore(45);
+		dynamicLine(1, onlines);
 	}
 }
