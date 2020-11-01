@@ -131,6 +131,7 @@ public class Main extends JavaPlugin {
 		tpLobby(playerCache.get(p.getName()));
 	}
 	public static void tpLobby(HubPlayer hp) {
+	    if(hp.p == null)return;
 		hp.p.teleport(spawn);
 		hp.p.getInventory().clear();
 		hp.p.getActivePotionEffects().clear();
