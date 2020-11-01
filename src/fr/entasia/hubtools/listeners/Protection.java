@@ -2,6 +2,7 @@ package fr.entasia.hubtools.listeners;
 
 import fr.entasia.apis.utils.VectorUtils;
 import fr.entasia.hubtools.Main;
+import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -38,6 +39,7 @@ public class Protection implements Listener {
 	@EventHandler
 	public static void damage(EntityDamageEvent e) {
 		e.setCancelled(true);
+
 		if(e.getEntity() instanceof Player){
 			if (e.getCause() == EntityDamageEvent.DamageCause.VOID) Main.tpLobby((Player) e.getEntity());
 		}else e.getEntity().remove();
@@ -46,7 +48,7 @@ public class Protection implements Listener {
 	@EventHandler
 	public static void damage2(EntityDamageByEntityEvent e){
 		e.setCancelled(true);
-		if(e.getDamager() instanceof Player){
+		if(e.getDamager() instanceof Player &&  e.getEntity().getWorld().getPlayers().contains(e.getEntity()) ){
 			Vector v = e.getEntity().getVelocity();
 			v.add(e.getDamager().getLocation().getDirection().setY(0).divide(new Vector(5, 5, 5)));
 			VectorUtils.limitVector(v, 2);

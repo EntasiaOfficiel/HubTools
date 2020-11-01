@@ -3,7 +3,7 @@ author: iTrooz_, Narcos
 description: Utilités pour le Hub
 version: -1
 main: fr.entasia.hubtools.Main
-depend: [Libraries]
+depend: [Libraries, Citizens]
 softdepend: [Multiverse-Core, Vault]
 api-version: '1.15'
 commands:

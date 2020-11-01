@@ -5,6 +5,7 @@ import fr.entasia.apis.other.ItemBuilder;
 import fr.entasia.apis.socket.SocketClient;
 import fr.entasia.apis.socket.SocketEvent;
 import fr.entasia.hubtools.commands.*;
+import fr.entasia.hubtools.listeners.NPCEvent;
 import fr.entasia.hubtools.listeners.Other;
 import fr.entasia.hubtools.listeners.Protection;
 import fr.entasia.hubtools.listeners.Zones;
@@ -12,6 +13,7 @@ import fr.entasia.hubtools.utils.EntasiaServer;
 import fr.entasia.hubtools.utils.HubPlayer;
 import fr.entasia.hubtools.utils.InvsManager;
 import fr.entasia.hubtools.utils.Regions;
+import net.minecraft.server.v1_15_R1.EntityPlayer;
 import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -58,11 +60,13 @@ public class Main extends JavaPlugin {
 			getServer().getPluginManager().registerEvents(new Other(), this);
 			getServer().getPluginManager().registerEvents(new Protection(), this);
 			getServer().getPluginManager().registerEvents(new Zones(), this);
+			getServer().getPluginManager().registerEvents(new NPCEvent(), this);
 
 			getCommand("spawn").setExecutor(new Spawn());
 			getCommand("menu").setExecutor(new Menu());
 			getCommand("hubtools").setExecutor(new HubTools());
 			getCommand("buildtoggle").setExecutor(new BuildToggle());
+
 
 			getCommand("skyblock").setExecutor(new BaseCommands.Skyblock());
 			getCommand("entagames").setExecutor(new BaseCommands.EntaGames());
