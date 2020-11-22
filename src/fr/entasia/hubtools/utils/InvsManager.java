@@ -73,7 +73,7 @@ public class InvsManager {
 		item = new ItemBuilder(Material.COMPARATOR).name("§8Paramètrages").lore("§9Non disponible pour le moment !").build();
 		inv.setItem(53, item);
 
-		if(p.hasPermission( "entasia.dev")){
+		if(p.hasPermission( "dev.showservers")){
 			ItemBuilder builder = new ItemBuilder(Material.COMMAND_BLOCK).name("§8Serveur de développement §11");
 			inv.setItem(47, builder.build());
 			builder.name("§8Serveur de développement §12");
