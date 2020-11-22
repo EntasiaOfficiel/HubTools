@@ -13,7 +13,6 @@ import fr.entasia.hubtools.utils.EntasiaServer;
 import fr.entasia.hubtools.utils.HubPlayer;
 import fr.entasia.hubtools.utils.InvsManager;
 import fr.entasia.hubtools.utils.Regions;
-import net.minecraft.server.v1_15_R1.EntityPlayer;
 import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;

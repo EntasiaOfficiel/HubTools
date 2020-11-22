@@ -2,7 +2,6 @@ package fr.entasia.hubtools.listeners;
 
 import fr.entasia.apis.utils.VectorUtils;
 import fr.entasia.hubtools.Main;
-import net.citizensnpcs.api.npc.NPC;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
